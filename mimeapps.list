@@ -1,0 +1,17 @@
+[Default Applications]
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/gitkraken=GitKraken.desktop
+
+text/html=firefox.desktop
+text/xml=firefox.desktop;
+application/xhtml_xml=firefox.desktop;
+image/webp=firefox.desktop;
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/ftp=firefox.desktop;
+x-scheme-handler/about=firefox.desktop
+x-scheme-handler/unknown=firefox.desktop
+
+[Added Associations]
+text/plain=nvim.desktop;
+application/pdf=org.gnome.Evince.desktop;

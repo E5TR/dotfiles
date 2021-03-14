@@ -63,10 +63,10 @@ font-6 = "Font Awesome 5 Free:style=Regular:size=8;2"
 ;font-7 = "Font Awesome 5 Free:style=Light:size=8;2"
 
 fixed-center = true
-modules-left = i3 spacer date spacer spotify previous playpause next 
+modules-left = i3 spacer spotify previous playpause next 
 ;spotify spotify-prev spotify-play-pause spotify-next
 modules-center = xwindow
-modules-right = xbacklight pulseaudio battery temperature
+modules-right = xbacklight pulseaudio battery temperature date
 
 tray-position = right
 ;tray-padding = 2
@@ -193,7 +193,7 @@ wrapping-scroll = false
 
 ws-icon-0 = 1;🕸
 ws-icon-1 = 2;🐧
-ws-icon-2 = 3;🦇
+ws-icon-2 = 3;🦑
 ws-icon-3 = 4;🐈
 ws-icon-4 = 5;🐇
 ws-icon-5 = 6;🐑

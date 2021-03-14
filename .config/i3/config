@@ -237,7 +237,7 @@ for_window [class="Element"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
 for_window [class="kitty"] move to workspace $ws2
 for_window [class="Code"] move to workspace $ws2
-
+for_window [class="GitKraken"] move to workspace $ws3
 
 # for_window [class="Yad" title="yad-calendar"] floating enable
 

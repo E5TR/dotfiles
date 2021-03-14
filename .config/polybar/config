@@ -251,11 +251,8 @@ label-song-ellipsis = true
 type = internal/backlight
 
 format = <ramp> <label>
-
 card = amdgpu_bl0
-
 label = %percentage%%
-
 ramp-font = 4
 
 ; Only applies if <ramp> is used
@@ -264,6 +261,8 @@ ramp-3 = 🌔
 ramp-2 = 🌓
 ramp-1 = 🌒
 ramp-0 = 🌑
+
+format-underline = #f1fa8c
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -336,6 +335,8 @@ label = %date% %time%
 label-background = ${colors.background}
 ;label-padding = 2
 
+label-underline = #bd93f9
+
 [module/pulseaudio]
 type = internal/pulseaudio
 
@@ -356,6 +357,8 @@ ramp-volume-2 = 🔊
 label-muted = "🔇"   
 label-muted-background = ${colors.background}
 ;label-muted-padding = 2
+
+format-volume-underline = #ffb86c
 
 [module/alsa]
 type = internal/alsa
@@ -392,7 +395,7 @@ adapter = AC
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #f1fa8c
+format-charging-underline = #ff5555
 
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
@@ -426,7 +429,7 @@ warn-temperature = 60
 hwmon-path = /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon4/temp1_input
 
 format = <ramp> <label>
-format-underline = #f50a4d
+format-underline = #ff79c6
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 

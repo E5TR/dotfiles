@@ -216,7 +216,7 @@ gaps outer 0
 
 smart_gaps on
 
-exec --no-startup-id feh --bg-scale /home/blankie/Pictures/Wallpapers/309063326_74e9381266_o.jpg
+exec --no-startup-id feh --bg-scale /home/blankie/Pictures/Wallpapers/jellyfish.jpg
 
 exec_always --no-startup-id picom --experimental-backend --config ~/.config/picom/picom.conf
 

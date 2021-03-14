@@ -178,9 +178,9 @@ bindsym $mod+r mode "resize"
 
 
 #interactive screenshot by pressing printscreen
-bindsym Print exec gnome-screenshot -i 
+bindsym Print exec scrot -e 'xclip -selection c -t image/png < $f && mv $f ~/Pictures/Screenshots' 
 #crop-area screenshot by pressing Mod + printscreen
-bindsym $mod+Print exec gnome-screenshot -a
+bindsym $mod+Print exec scrot -s -e 'xclip -selection c -t image/png < $f && mv $f ~/Pictures/Screenshots'
 
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
@@ -222,7 +222,26 @@ exec_always --no-startup-id picom --experimental-backend --config ~/.config/pico
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --panels
 
+exec_always --no-startup-id xmousepasteblock
+
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+
+#exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+exec_always --no-startup-id lxsession &
+
 #exec --no-startup-id i3-battery-popup
+
+for_window [class="firefox"] move to workspace $ws1
+for_window [class="Element"] move to workspace $ws9
+for_window [class="Spotify"] move to workspace $ws10
+for_window [class="kitty"] move to workspace $ws2
+for_window [class="Code"] move to workspace $ws2
+
+
+# for_window [class="Yad" title="yad-calendar"] floating enable
+
+
 
 # bindsym $mod+m bar mode toggle
 

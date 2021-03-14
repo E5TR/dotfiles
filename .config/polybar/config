@@ -34,7 +34,9 @@ height = 27
 ;offset-x = 1%
 ;offset-y = 1%
 ;`radius = 6.0
-fixed-center = false
+;fixed-center = false
+
+enable-ipc = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -54,10 +56,17 @@ module-margin-right = 2
 font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
+font-3 = twemoji:scale=9:antialias=false;0
+font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=8;2"
+font-5 = "Font Awesome 5 Brands:style=Regular:pixelsize=8;2"
+font-6 = "Font Awesome 5 Free:style=Regular:size=8;2"
+;font-7 = "Font Awesome 5 Free:style=Light:size=8;2"
 
-modules-left = i3
-modules-center = mpd
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+fixed-center = true
+modules-left = i3 spacer date spacer spotify previous playpause next 
+;spotify spotify-prev spotify-play-pause spotify-next
+modules-center = xwindow
+modules-right = xbacklight pulseaudio battery temperature
 
 tray-position = right
 ;tray-padding = 2
@@ -77,9 +86,9 @@ tray-position = right
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
+;[module/xwindow]
+;type = internal/xwindow
+;label = %title:0:30:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -106,6 +115,53 @@ mount-0 = /
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/previous]
+type = custom/ipc
+format-font = 6
+; Default
+hook-0 = echo ""
+; When spotify active
+hook-1 = echo ""
+click-left = "spotifyctl -q previous"
+
+[module/next]
+type = custom/ipc
+format-font = 6
+; Default
+hook-0 = echo ""
+; When spotify active
+hook-1 = echo ""
+click-left = "spotifyctl -q next"
+
+[module/spacer]
+type = custom/text
+content = |
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:50:...%
+label-foreground = ${colors.foreground} 
+label-background = ${colors.background} 
+label-padding = 2
+
+[module/playpause]
+type = custom/ipc
+format-font = 6
+; Default
+hook-0 = echo ""
+; Playing
+hook-1 = echo ""
+; Paused
+hook-2 = echo ""
+click-left = "spotifyctl -q playpause"
+
+[module/spotify]
+type = custom/ipc
+; Default
+hook-0 = echo ""
+; Playing/paused show song name and artist
+hook-1 = echo "$(spotifyctl -q status --format '%artist%: %title%' --max-length 30)"
 
 [module/bspwm]
 type = internal/bspwm
@@ -135,6 +191,17 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
+ws-icon-0 = 1;🕸
+ws-icon-1 = 2;🐧
+ws-icon-2 = 3;🦇
+ws-icon-3 = 4;🐈
+ws-icon-4 = 5;🐇
+ws-icon-5 = 6;🐑
+ws-icon-6 = 7;🐝
+ws-icon-7 = 8;🐸
+ws-icon-8 = 9;🐬
+ws-icon-9 = 10;🐄
+
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
@@ -143,23 +210,23 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused = %icon%
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.primary}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %icon%
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %icon%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %icon%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
@@ -183,21 +250,20 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/backlight
 
-format = <label> <bar>
-label = BL
+format = <ramp> <label>
 
 card = amdgpu_bl0
 
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+label = %percentage%%
+
+ramp-font = 4
+
+; Only applies if <ramp> is used
+ramp-4 = 🌕
+ramp-3 = 🌔
+ramp-2 = 🌓
+ramp-1 = 🌒
+ramp-0 = 🌑
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -260,46 +326,36 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 10
+;format-margin = 10
 
-date =
-date-alt = " %Y-%m-%d"
-
-time = %H:%M
-time-alt = %H:%M:%S
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #50fa7b
+time = "%H:%M"
+date = "%d %b"
 
 label = %date% %time%
+label-background = ${colors.background}
+;label-padding = 2
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
+;format-volume-margin = 2
+format-volume = <ramp-volume><label-volume>
+label-volume = %percentage:4:4%%
+format-volume-background = ${colors.background}
+;format-volume-padding = 2
+use-ui-max = false
+interval = 5
 
-label-muted = 🔇 muted
-label-muted-foreground = #666
+ramp-font = 4
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+
+label-muted = "🔇"   
+label-muted-background = ${colors.background}
+;label-muted-padding = 2
 
 [module/alsa]
 type = internal/alsa
@@ -391,7 +447,7 @@ expand-right = true
 format-spacing = 1
 
 label-open = 
-label-open-foreground = ${colors.secondary}
+label-open-foreground = ${colors.secondary}  
 label-close =  cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
@@ -402,13 +458,13 @@ menu-0-0-exec = menu-open-1
 menu-0-1 = power off
 menu-0-1-exec = menu-open-2
 
-menu-1-0 = cancel
+menu-1-0 = cancel 
 menu-1-0-exec = menu-open-0
 menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+menu-1-1-exec = reboot
 
 menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
+menu-2-0-exec = poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 

@@ -27,4 +27,4 @@ color=$dir/styles/dracula.rasi
 #themes=($(ls -p --hide="launcher.sh" --hide="styles" $dir))
 #theme="${themes[$(( $RANDOM % 12 ))]}"
 
-rofi -no-lazy-grab -show drun -modi drun -theme $dir/"$theme"
+rofi -no-lazy-grab -show drun -modi drun -theme $dir/"$theme" -icon-theme "Dracula"

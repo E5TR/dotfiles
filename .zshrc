@@ -104,6 +104,7 @@ source $ZSH/oh-my-zsh.sh
 
 path+=('/home/blankie/Programs/bin')
 path+=('/snap/bin')
+path+=('/home/blankie/.local/bin')
 export PATH
 
 alias icat="kitty +kitten icat"

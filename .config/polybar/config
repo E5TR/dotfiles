@@ -54,7 +54,7 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-1 = Unifont:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 font-3 = twemoji:scale=9:antialias=false;0
 font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=8;2"
@@ -103,10 +103,13 @@ content = |
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:50:...%
+label = %title%
+label-maxlen = 50
 label-foreground = ${colors.foreground} 
 label-background = ${colors.background} 
+format-underline = #bd93f9
 label-padding = 2
+label-empty = ${env:USERHOST}
 
 [module/i3]
 type = internal/i3
@@ -135,7 +138,7 @@ label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
 label-focused-background = ${colors.background}
-label-focused-underline = ${colors.primary}
+label-focused-underline = #ff79c6
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor

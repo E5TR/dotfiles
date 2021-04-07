@@ -1,16 +1,7 @@
 # Dotfiles
 
-LightDm
-- lightdm-webkit2-greeter
-	- litarvan 
+![i3 Desktop Preview](Pictures/Screenshots/screenshot.png)
 
-Polybar:
-- https://github.com/mihirlad55/polybar-spotify-module
+My configs!
+Some are downloaded from other dracula colour scheme repos, and others are self modified.
 
-Dracula theming:
-- https://draculatheme.com
-- Self made
-
-Rofi menus:
-- https://github.com/adi1090x/rofi
-	- betterlockscreen

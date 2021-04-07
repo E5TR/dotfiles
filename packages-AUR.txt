@@ -1,0 +1,13 @@
+gitkraken
+mugshot
+mullvad-vpn-bin
+nerd-fonts-complete
+pipes.sh
+polybar
+siji
+ttf-twemoji
+ttf-twemoji-color
+ttf-unifont
+visual-studio-code-bin
+wev
+yay-git

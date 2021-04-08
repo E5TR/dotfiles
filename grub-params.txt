@@ -1,0 +1,1 @@
+GRUB_CMDLINE_LINUX_DEFAULT="resume=/dev/nvme0n1p2 loglevel=3 quiet"

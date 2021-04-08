@@ -12,7 +12,6 @@ workspace_layout default
 # gaps
 gaps inner 10
 gaps outer 0
-smart_gaps on
 
 # get auth work with polkit-gnome
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -25,11 +24,11 @@ hide_edge_borders none
 
 # Default borders
 default_floating_border normal
-default_border pixel 5
+default_border pixel 3
 
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y border pixel 5
+bindsym $mod+y border pixel 3
 bindsym $mod+n border normal
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -104,9 +103,10 @@ exec_always --no-startup-id lxsession &
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --panels
 exec_always --no-startup-id picom --experimental-backend --config ~/.config/picom/picom.conf
 exec --no-startup-id nm-applet
+exec --no-startuo-id blueman-applet
 exec --no-startup-id nitrogen --restore
 #backup packages lists:
-#exec pacman -Qqen > packages-repository.txt && pacman -Qqem > packages-AUR.txt
+exec_always pacman -Qqen > $HOME/Documents/Packages/packages-repository.txt && pacman -Qqem > $HOME/Documents/Packages/packages-AUR.txt
 #set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
 # Desktop notifications
@@ -184,20 +184,21 @@ bindsym $mod+r mode "resize"
 
 title_align center
 
-set $bg-color               #bd93f9
-set $inactive-bg-color      #3d2f52
-set $text-color             #1b1524
-set $border-color           #bd93f9
-set $inactive-border-color  #3d2f52
-set $inactive-text-color    #f8f8f2
-set $urgent-bg-color        #ff5555
-set $indicator-color        #bd93f9
+set $bg-color                 #bd93f9
+set $inactive-bg-color        #3d2f52
+set $text-color               #1b1524
+set $border-color             #bd93f9
+set $inactive-border-color    #3d2f52
+set $inactive-text-color      #f8f8f2
+set $urgent-bg-color          #ff5555
+set $indicator-color          #bd93f9
+set $inactive-indicator-color #3d2f52
 
 # set window colors
 #                       border                 background         text                 indicator
 client.focused          $border-color          $bg-color          $text-color          $indicator-color
-client.unfocused        $inactive-border-color $inactive-bg-color $inactive-text-color $indicator-color
-client.focused_inactive $inactive-border-color $inactive-bg-color $inactive-text-color $indicator-color
+client.unfocused        $inactive-border-color $inactive-bg-color $inactive-text-color $inactive-indicator-color
+client.focused_inactive $inactive-border-color $inactive-bg-color $inactive-text-color $inactive-indicator-color
 client.urgent           $urgent-bg-color       $urgent-bg-color   $text-color          $indicator-color
 
 focus_follows_mouse yes
@@ -248,7 +249,7 @@ bindsym $mod+Print exec scrot -s -e 'xclip -selection c -t image/png < $f && mv 
 #bindsym F12 exec rofi -show window -lines 7
 
 # Lock the system
-bindsym $mod+Esc exec i3lock -i ~/.config/i3/i3-lock-screen.png -t -f
+bindsym $mod+Escape exec betterlockscreen -l blur
 
 # Switch workspaces
 bindsym $mod+Prior workspace prev
@@ -256,11 +257,11 @@ bindsym $mod+Next workspace next
 
 # rofi bindings fancy menu
 bindsym $mod+space exec rofi -modi drun -show drun -line-padding 4 \
-                -columns 2 -padding 50 -hide-scrollbar \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
+                -columns 1 -padding 50 -hide-scrollbar \
+                -show-icons -drun-icon-theme "Dracula" -font "FiraCode Nerd Font Regular 11"
 
 bindsym $mod+Shift+space exec rofi -show window -line-padding 4 \
                 -lines 6 -padding 50 -hide-scrollbar \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
+                -show-icons -drun-icon-theme "Dracula" -font "FiraCode Nerd Font Regular 10"
 
 

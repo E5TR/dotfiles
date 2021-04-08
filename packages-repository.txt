@@ -6,6 +6,9 @@ base
 bdf-unifont
 binutils
 bison
+blueman
+bluez
+bluez-tools
 bluez-utils
 brightnessctl
 ccid
@@ -13,6 +16,7 @@ cheese
 cmatrix
 dhcpcd
 dmenu
+docker
 dunst
 efibootmgr
 evince
@@ -22,6 +26,7 @@ file
 findutils
 firefox
 flex
+fuse2
 gawk
 gcc
 gettext
@@ -29,13 +34,11 @@ git
 gnome-keyring
 gparted
 grep
-grim
 groff
 grub
 gzip
 i3-gaps
 i3blocks
-i3lock
 i3status
 iwd
 jq
@@ -53,6 +56,7 @@ lxsession
 m4
 make
 menumaker
+nano
 neofetch
 neovim
 network-manager-applet
@@ -78,13 +82,12 @@ scrot
 seahorse
 sed
 sudo
-sway
 sysstat
 texinfo
 tor
 torsocks
 unzip
-waybar
+vim
 wget
 which
 wpa_supplicant
@@ -138,5 +141,6 @@ xorg-xwayland
 xorg-xwd
 xorg-xwininfo
 xorg-xwud
+xterm
 yubioath-desktop
 zsh

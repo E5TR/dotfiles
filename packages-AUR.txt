@@ -1,3 +1,4 @@
+betterlockscreen
 gitkraken
 mugshot
 mullvad-vpn-bin
@@ -11,3 +12,4 @@ ttf-unifont
 visual-studio-code-bin
 wev
 yay-git
+zoom
